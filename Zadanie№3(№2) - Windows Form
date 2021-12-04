@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Zadanie_3__2_
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        static float f(float x)
+        {
+            float y;
+            if (Math.Abs(x) <= 1)
+            {
+                y = x * x - 1;
+            }
+            else if (Math.Abs(x) > 1 && Math.Abs(x) <= 2)
+            {
+                y = 2 * x - 1;
+            }
+            else
+            {
+                y = (float)Math.Pow(x, 5) - 1;
+            }
+            return y;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string text_box1 = textBox1.Text;
+            string text_box2 = textBox2.Text;
+            string text_box3 = textBox3.Text;
+
+            float a = float.Parse(text_box1);
+            float b = float.Parse(text_box2);
+            float h = float.Parse(text_box3);
+
+            if (h > 0)
+            {
+                for (float i = a; i <= b; i += h)
+                {
+                    textBox4.Text += ($"f({i}) = " + f(i)).ToString() + "\r\n";
+                }
+            }
+            else
+                textBox4.Text = ("Ошибка! Некорректный ввод шага h. Введите положительное число h.");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

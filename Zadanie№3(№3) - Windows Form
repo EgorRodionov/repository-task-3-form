@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Zadanie_3__3_
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        static float f(float x)
+        {
+            float y;
+            if (Math.Abs(x) <= 1)
+            {
+                y = x * x - 1;
+            }
+            else if (Math.Abs(x) > 1 && Math.Abs(x) <= 2)
+            {
+                y = 2 * x - 1;
+            }
+            else
+            {
+                y = (float)Math.Pow(x, 5) - 1;
+            }
+            return y;
+        }
+
+        static void f(double x, out double y)
+        {
+            double a = 10;
+            y = x < a    // если x < a
+            ? 0    // то вывести 0
+            : x > a    // иначе если x > a
+            ? (x - a) / (x + a)    // то (x - a) / (x + a)
+            : 1;    //иначе 1
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string text_box1 = textBox1.Text;
+            string text_box2 = textBox2.Text;
+            string text_box3 = textBox3.Text;
+
+            float a = float.Parse(text_box1);
+            float b = float.Parse(text_box2);
+            float h = float.Parse(text_box3);
+
+            if (h > 0)
+            {
+                for (float i = a; i <= b; i += h)
+                {
+
+                    textBox4.Text += ($"f({i}) = " + f(i)).ToString() + "\r\n";
+                }
+            }
+            else
+                textBox4.Text = ("Ошибка! Некорректный ввод шага h. Введите положительное число h.");
+
+            for (double x = 0; x <= 20; x += 1)
+            {
+                f(x, out double y);
+                textBox5.Text += ($"f({x,5:F})={y,10:F2}") + "\r\n";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
